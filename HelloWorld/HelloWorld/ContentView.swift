@@ -9,13 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 20) {
+            YellowView()
+            
+            YellowView()
         }
-        .padding()
+    }
+}
+
+struct YellowView: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "message.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80, height: 80)
+        }
+        .padding(.leading, 16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.yellow)
     }
 }
 
