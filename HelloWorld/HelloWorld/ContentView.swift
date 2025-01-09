@@ -10,14 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 20) {
-            YellowView()
+            YellowView(textCounts: (1, 1))
             
-            YellowView()
+            YellowView(textCounts: (3, 2))
         }
     }
 }
 
 struct YellowView: View {
+    let textCounts: (Int, Int)
+    
     var body: some View {
         HStack(spacing: 20) {
             Image(systemName: "message.circle.fill")
@@ -25,7 +27,7 @@ struct YellowView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80, height: 80)
             
-            TextView()
+            TextView(helloCount: textCounts.0, worldCount: textCounts.1)
         }
         .padding(.leading, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,11 +36,23 @@ struct YellowView: View {
 }
 
 struct TextView: View {
+    let helloCount: Int
+    let worldCount: Int
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Hello")
+            VStack {
+                ForEach(0..<helloCount, id: \.self) { _ in
+                    Text("Hello")
+                        .foregroundStyle(.blue)
+                }
+            }
             
-            Text("World")
+            VStack {
+                ForEach(0..<worldCount, id: \.self) { _ in
+                    Text("World")
+                }
+            }
         }
     }
 }
